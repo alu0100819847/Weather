@@ -4,7 +4,8 @@
 
 #include<string.h>
 #include"Weather.h"
- 
+#include"Filter.h"
+
 int main(int argc, char *argv[]){
 	FILE *file;
 	int c;
@@ -18,7 +19,7 @@ int main(int argc, char *argv[]){
 		if(c=='\n'){
 			if(!header){
 				weather = createWeather(input);
-				printWeather(weather);
+				printWeather(weather);	
 			}
 			header = false;
 			memset(input,0,200);
