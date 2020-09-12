@@ -17,18 +17,23 @@ int main(int argc, char *argv[]){
 	while((c=fgetc(file))!=EOF){
 		if(c=='\n'){
 			if(!header){
-			printf("\n%s", input);
+				weather = createWeather(input);
+				printWeather(weather);
 			}
 			header = false;
 			memset(input,0,200);
 			counter= 0;
 		}
 		else{
+			if(c==','){
+				c = '.';
+			}
 			input[counter] = c;
 			counter += 1;
 		}
 	}
-	printf("\n%s", input);
+	weather = createWeather(input);
+	printWeather(weather);
 	fclose(file);
 	return 0;
 }

@@ -9,7 +9,7 @@ typedef struct {
 }Weather;
 
 
-Weather createTiempo(char inputData[]);
+Weather createWeather(char inputData[]);
 
 void printWeather(Weather weather);
 
