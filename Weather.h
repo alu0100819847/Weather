@@ -13,4 +13,8 @@ Weather createWeather(char inputData[]);
 
 void printWeather(Weather weather);
 
+Weather temperatureScale(Weather weather, char* scale);
+
 float celciusToFarenheit(float celcius);
+
+

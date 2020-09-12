@@ -38,3 +38,15 @@ void printWeather(Weather weather){
 	printf("\n{'temperaturaMinima': %.2f, 'temperaturaMaxima': %.2f, 'precipitacion': %.2f}", weather.temperaturaMinima, weather.temperaturaMaxima, weather.precipitacion);
 }
 
+Weather temperatureScale(Weather weather, char* scale){
+	if(strcmp("Farenheit", scale) == 0){
+		weather.temperaturaMaxima = celciusToFarenheit(weather.temperaturaMaxima);
+		weather.temperaturaMinima = celciusToFarenheit(weather.temperaturaMinima);
+	}
+	return weather;
+}
+
+float celciusToFarenheit(float celcius){
+	return celcius*(9/5)+32;	
+}
+

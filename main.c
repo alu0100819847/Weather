@@ -31,6 +31,7 @@ int main(int argc, char *argv[]){
 			if(!header){
 				weather = createWeather(input);
 				if(filterCity(weather.ciudad, argv[1]) && filterDate(weather.fecha, argv[2])){
+					weather = temperatureScale(weather, argv[3]);
 					printWeather(weather);
 				}		
 			}
@@ -48,6 +49,7 @@ int main(int argc, char *argv[]){
 	}
 	weather = createWeather(input);
 	if(filterCity(weather.ciudad, argv[1]) && filterDate(weather.fecha, argv[2])){
+		weather = temperatureScale(weather, argv[3]);
 		printWeather(weather);
 	}
 	fclose(file);
