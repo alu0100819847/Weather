@@ -30,7 +30,9 @@ int main(int argc, char *argv[]){
 		if(c=='\n'){
 			if(!header){
 				weather = createWeather(input);
-				printWeather(weather);	
+				if(filterCity(weather.ciudad, argv[1]) && filterDate(weather.fecha, argv[2])){
+					printWeather(weather);
+				}		
 			}
 			header = false;
 			memset(input,0,200);
@@ -45,7 +47,9 @@ int main(int argc, char *argv[]){
 		}
 	}
 	weather = createWeather(input);
-	printWeather(weather);
+	if(filterCity(weather.ciudad, argv[1]) && filterDate(weather.fecha, argv[2])){
+		printWeather(weather);
+	}
 	fclose(file);
 	return 0;
 }
