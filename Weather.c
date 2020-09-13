@@ -31,6 +31,7 @@ Weather createWeather(char inputData[]) {
 		ptr = strtok(NULL, delim);
 		counter++;
 	}
+	free(ptr);
 	return weather;	
 }
 

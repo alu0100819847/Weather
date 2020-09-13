@@ -1,8 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdbool.h>
-#include<string.h>
+#include <locale.h>
 
+#include"FileManager.h"
 #include"Weather.h"
 #include"Filter.h"
 
@@ -15,45 +16,24 @@ bool checkParameters(int argc) {
 }
 
 int main(int argc, char *argv[]){
+	char *locale = setlocale(LC_ALL, "");
 	if(!checkParameters(argc)){
 		return 1;
 	}
-	FILE *file;
-	int c;
-	char uri[] = "data/Meteologica_vacante_ProgramadorC_20200901_datos.csv";
-	char input[200];
-	Weather weather;
-	file = fopen(uri, "rt");
-	bool header = true;
-	char counter = 0;
-	while((c=fgetc(file))!=EOF){
-		if(c=='\n'){
-			if(!header){
-				weather = createWeather(input);
-				if(filterCity(weather.ciudad, argv[1]) && filterDate(weather.fecha, argv[2])){
-					weather = temperatureScale(weather, argv[3]);
-					printWeather(weather);
-				}		
-			}
-			header = false;
-			memset(input,0,200);
-			counter= 0;
-		}
-		else{
-			if(c==','){
-				c = '.';
-			}
-			input[counter] = c;
-			counter += 1;
+	FileManager fileManager;
+	fileManager = initFile(fileManager);
+	while(fileManager.state != End){
+		fileManager = manageFile(fileManager);
+		Weather weather = createWeather(fileManager.newLine);
+		if(filterCity(weather.ciudad, argv[1]) && filterDate(weather.fecha, argv[2])){
+			weather = temperatureScale(weather, argv[3]);
+			printWeather(weather);
+			fileManager.state = End;
 		}
 	}
-	weather = createWeather(input);
-	if(filterCity(weather.ciudad, argv[1]) && filterDate(weather.fecha, argv[2])){
-		weather = temperatureScale(weather, argv[3]);
-		printWeather(weather);
-	}
-	fclose(file);
-	return 0;
+	return 0;	
 }
+
+
 
 
