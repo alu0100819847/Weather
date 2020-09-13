@@ -17,4 +17,4 @@ Weather temperatureScale(Weather weather, char* scale);
 
 float celciusToFarenheit(float celcius);
 
-
+char* checkWhitespace(char* srting);

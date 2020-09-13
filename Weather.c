@@ -15,6 +15,7 @@ Weather createWeather(char inputData[]) {
 		}
 		if(counter == 1) {
 			strcpy(weather.ciudad, ptr);
+			strcpy(weather.ciudad,checkWhitespace(weather.ciudad));
 		}
 		if(counter == 2) {
 			weather.temperaturaMaxima = atof(ptr);
@@ -49,5 +50,17 @@ Weather temperatureScale(Weather weather, char* scale){
 
 float celciusToFarenheit(float celcius){
 	return celcius*(9/5)+32;	
+}
+
+char* checkWhitespace(char* srting){
+	while(srting[0] == ' '){
+		srting++;
+	}
+	int size = strlen(srting) -1;
+	while(srting[size] == ' '){
+		srting[size] = '\0';
+		size--;
+	}
+	return srting;
 }
 
