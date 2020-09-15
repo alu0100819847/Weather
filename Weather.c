@@ -8,10 +8,10 @@ Weather createWeather(char inputData[]) {
 	int counter = 0;
 	char delim[] = ";";
 	char *ptr = strtok(inputData, delim);
-	while(ptr != NULL)
-	{
+	while(ptr != NULL){
 		if(counter == 0) {
 			strcpy(weather.fecha, ptr);
+			strcpy(weather.fecha,checkWhitespace(weather.fecha));
 		}
 		if(counter == 1) {
 			strcpy(weather.ciudad, ptr);

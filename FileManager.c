@@ -1,11 +1,7 @@
 #include<stdlib.h>
-#include<wchar.h>
 #include"FileManager.h"
 
-
 FileManager initFile(FileManager fileManager){
-	
-	
 	fileManager.file = fopen(URI, "r");
 	fileManager.state = Header;
 	return fileManager;
@@ -13,7 +9,6 @@ FileManager initFile(FileManager fileManager){
 
 FileManager manageFile(FileManager fileManager){
 	memset(fileManager.newLine,0,200);
-	int c;
 	if(fileManager.state == Header){
 		fileManager = skipData(fileManager);
 		fileManager.state = Reading;

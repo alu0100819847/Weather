@@ -8,7 +8,6 @@ typedef struct {
 	float nubosidad;
 }Weather;
 
-
 Weather createWeather(char inputData[]);
 
 void printWeather(Weather weather);
