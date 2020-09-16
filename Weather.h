@@ -1,6 +1,6 @@
 
 typedef struct {
-	char fecha[12];
+	int fecha;
 	char ciudad[40];
 	float temperaturaMaxima;
 	float temperaturaMinima;
@@ -16,4 +16,10 @@ Weather temperatureScale(Weather weather, char* scale);
 
 float celciusToFarenheit(float celcius);
 
-char* checkWhitespace(char* srting);
+char* checkWhitespace(char* string);
+
+int parseDate(char* dateString);
+
+bool filterDate(int date, int registered);
+
+bool filterCity(char city[], char registered[]);

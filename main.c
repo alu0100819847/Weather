@@ -5,7 +5,6 @@
 
 #include"FileManager.h"
 #include"Weather.h"
-#include"Filter.h"
 
 bool checkParameters(int argc, char* argv[]) {
 	if(argc != 4){
@@ -26,13 +25,13 @@ int main(int argc, char *argv[]){
 	}
 	FileManager fileManager;
 	fileManager = initFile(fileManager);
+	int search = parseDate(argv[2]);
 	while(fileManager.state != End){
 		fileManager = manageFile(fileManager);
 		Weather weather = createWeather(fileManager.newLine);
-		if(filterCity(weather.ciudad, argv[1]) && filterDate(weather.fecha, argv[2])){
+		if(filterCity(weather.ciudad, argv[1]) && filterDate(search, weather.fecha)){
 			weather = temperatureScale(weather, argv[3]);
 			printWeather(weather);
-			fileManager.state = End;
 		}
 	}
 	return 0;	
