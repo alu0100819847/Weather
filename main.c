@@ -3,8 +3,7 @@
 #include<stdbool.h>
 #include <locale.h>
 
-#include"FileManager.h"
-#include"Weather.h"
+#include"JsonManager.h"
 
 bool checkParameters(int argc, char* argv[]) {
 	if(argc != 4){
@@ -23,17 +22,8 @@ int main(int argc, char *argv[]){
 	if(!checkParameters(argc, argv)){
 		return 1;
 	}
-	FileManager fileManager;
-	fileManager = initFile(fileManager);
-	int search = parseDate(argv[2]);
-	while(fileManager.state != End){
-		fileManager = manageFile(fileManager);
-		Weather weather = createWeather(fileManager.newLine);
-		if(filterCity(weather.ciudad, argv[1]) && filterDate(search, weather.fecha)){
-			weather = temperatureScale(weather, argv[3]);
-			printWeather(weather);
-		}
-	}
+	manageData(argv);
+
 	return 0;	
 }
 

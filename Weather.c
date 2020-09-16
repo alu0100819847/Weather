@@ -1,7 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<string.h>
-#include<stdbool.h>
+
 #include <locale.h>
 #include<time.h>
 #include"Weather.h"
@@ -43,7 +43,7 @@ void printWeather(Weather weather){
 	struct tm* t;
 	time_t time = weather.fecha;
 	t = gmtime(&time);
-	printf("{'fecha': '%.4d/%.2d/%.2d', 'temperaturaMinima': %.3f, 'temperaturaMaxima': %.3f, 'precipitacion': %.2f},\n" ,t->tm_year+1900,t->tm_mon, t->tm_mday, weather.temperaturaMinima, weather.temperaturaMaxima, weather.precipitacion);
+	printf("{'fecha': '%.4d/%.2d/%.2d', 'temperaturaMinima': %.3f, 'temperaturaMaxima': %.3f, 'precipitacion': %.2f},\n" ,t->tm_year+1900,t->tm_mon+1, t->tm_mday+1, weather.temperaturaMinima, weather.temperaturaMaxima, weather.precipitacion);
 }
 
 Weather temperatureScale(Weather weather, char* scale){
@@ -86,7 +86,7 @@ int parseDate(char* dateString){
 			t.tm_mon    = atoi(ptr)-1;
 		}
 		if(counter == 2) {
-			t.tm_mday   = atoi(ptr);
+			t.tm_mday   = atoi(ptr)-1;
 		}
 		counter += 1;
 		ptr = strtok(NULL, delim);
@@ -102,9 +102,3 @@ bool filterDate(int date, int registered) {
 	return difftime(date, registered) <= 0;
 }
 
-
-/*
-				struct tm* t;
-				t = gmtime(&i);
-				printf("\n%d/%d/%d",t->tm_year+1900,t->tm_mon, t->tm_mday);
-*/

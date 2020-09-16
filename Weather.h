@@ -1,3 +1,4 @@
+#include<stdbool.h>
 
 typedef struct {
 	int fecha;
