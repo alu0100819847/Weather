@@ -1,6 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<stdbool.h>
+#include<string.h>
 #include <locale.h>
 
 #include"JsonManager.h"
@@ -18,7 +19,8 @@ bool checkParameters(int argc, char* argv[]) {
 }
 
 int main(int argc, char *argv[]){
-	char *locale = setlocale(LC_ALL, "");
+	setlocale(LC_ALL, "");
+
 	if(!checkParameters(argc, argv)){
 		return 1;
 	}

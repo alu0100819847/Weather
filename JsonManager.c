@@ -31,8 +31,8 @@ int manageData(char *argv[]){
 
 
 void printJson(JsonManager jsonManager){
-	struct lconv * lc = localeconv();
-	lc->decimal_point = ".";
+    
+	setlocale(LC_NUMERIC, "en_US.UTF-8");
 	printf("[\n");
 	int counter;
 	for(counter = 0; counter< jsonManager.size; counter +=1){
