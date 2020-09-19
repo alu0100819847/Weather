@@ -24,12 +24,20 @@ FileManager manageFile(FileManager fileManager){
 FileManager getData(FileManager fileManager){
 	int c;
 	int counter = 0;
+	char checkBlank;
 	c=fgetc(fileManager.file);
 	fileManager.newLine[counter] = c;
 	while(c != EOF && c!= '\n'){
 		counter += 1;
 		c=fgetc(fileManager.file);
+		if(c == checkBlank && checkBlank == ';'){
+			fileManager.newLine[counter] = '0';
+			counter += 1;
+		}
 		fileManager.newLine[counter] = c;
+
+		checkBlank= c;
+		
 	}
 	if(c == EOF){
 		fileManager.state = End;

@@ -25,11 +25,11 @@ Weather createWeather(char inputData[]) {
 		}
 		if(counter == 5) {
 			weather.nubosidad = atof(ptr);
-			weather.fecha = parseDate(tempDate);
 		}
 		ptr = strtok(NULL, delim);
 		counter += 1;
 	}
+	weather.fecha = parseDate(tempDate);
 	return weather;	
 }
 
@@ -66,9 +66,9 @@ char* checkWhitespace(char* string){
 
 int parseDate(char* dateString){
 	struct tm t;
-	t.tm_sec    = 0;
-	t.tm_min    = 0;
-	t.tm_hour   = 0;
+	t.tm_sec    = 1;
+	t.tm_min    = 1;
+	t.tm_hour   = 1;
 	int counter = 0;
 	char delim[] = "/";
 	char *ptr = strtok(dateString, delim);
@@ -85,7 +85,7 @@ int parseDate(char* dateString){
 		counter += 1;
 		ptr = strtok(NULL, delim);
 	}
-	return mktime(&t);
+	return checkValidDate(mktime(&t), t.tm_mday);
 }
 
 bool filterCity(char city[], char registered[]) {
@@ -94,5 +94,16 @@ bool filterCity(char city[], char registered[]) {
 
 bool filterDate(int date, int registered) {
 	return difftime(date, registered) <= 0;
+}
+
+int checkValidDate(int time, int day){
+	struct tm* t;
+	time_t time_structure = time;
+	t = gmtime(&time_structure);
+	if(t->tm_mday == day){
+		return time;
+	}
+	printf("hola");
+	return 0;
 }
 

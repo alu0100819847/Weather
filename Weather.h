@@ -32,4 +32,5 @@ bool filterDate(int date, int registered);
 
 bool filterCity(char city[], char registered[]);
 
+int checkValidDate(int time, int day);
 #endif

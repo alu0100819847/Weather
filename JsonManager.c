@@ -11,8 +11,16 @@ int manageData(char *argv[]){
 	FileManager fileManager;
 	fileManager = initFile(fileManager);
 	JsonManager jsonManager;
+	if(fileManager.file == NULL){
+		fprintf(stderr, "File Not Found\n");
+		return 1;
+	}
 	jsonManager.size = 0;
 	int search = parseDate(argv[2]);
+	if(search == 0){
+		fprintf(stderr, "Wrong Date\n Usage: weather[.exe] <City> <yyyy/mm/dd> <Celcius/Farenheit>\n");
+		return 1;
+	}
 	while(fileManager.state != End){
 		fileManager = manageFile(fileManager);
 		Weather weather = createWeather(fileManager.newLine);
