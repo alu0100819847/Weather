@@ -7,7 +7,7 @@ FileManager initFile(FileManager fileManager){
 }
 
 FileManager manageFile(FileManager fileManager){
-	memset(fileManager.newLine,0,200);
+	memset(fileManager.newLine,0,MAX_BUFFER);
 	if(fileManager.state == Header){
 		fileManager = skipData(fileManager);
 		fileManager.state = Reading;

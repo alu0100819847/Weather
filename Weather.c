@@ -103,7 +103,6 @@ int checkValidDate(int time, int day){
 	if(t->tm_mday == day){
 		return time;
 	}
-	printf("hola");
 	return 0;
 }
 
