@@ -1,4 +1,11 @@
+#ifndef _WEATHER_H
+#define _WEATHER_H
+
 #include<stdbool.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#include<time.h>
 
 typedef struct {
 	int fecha;
@@ -24,3 +31,5 @@ int parseDate(char* dateString);
 bool filterDate(int date, int registered);
 
 bool filterCity(char city[], char registered[]);
+
+#endif

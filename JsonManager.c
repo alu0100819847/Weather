@@ -1,6 +1,3 @@
-#include<stdio.h>
-#include <locale.h>
-
 #include"JsonManager.h"
 #include"FileManager.h"
 
@@ -31,7 +28,6 @@ int manageData(char *argv[]){
 
 
 void printJson(JsonManager jsonManager){
-    
 	setlocale(LC_NUMERIC, "en_US.UTF-8");
 	printf("[\n");
 	int counter;

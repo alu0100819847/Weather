@@ -1,4 +1,3 @@
-#include<stdlib.h>
 #include"FileManager.h"
 
 FileManager initFile(FileManager fileManager){

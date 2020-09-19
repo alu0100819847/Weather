@@ -1,8 +1,13 @@
-#include<stdbool.h>
+#ifndef _FILEMANAGER_H
+#define _FILEMANAGER_H
+
 #include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
 #include<string.h>
-#include<wchar.h>
+
 #define URI "data/Meteologica_vacante_ProgramadorC_20200901_datos.csv"
+#define MAX_BUFFER 100
 
 typedef enum{
 	Header,
@@ -13,7 +18,7 @@ typedef enum{
 typedef struct {
 	FILE *file;
 	State state;
-	char newLine[100];
+	char newLine[MAX_BUFFER];
 }FileManager;
 
 FileManager initFile(FileManager fileManager);
@@ -23,3 +28,5 @@ FileManager manageFile(FileManager fileManager);
 FileManager getData(FileManager fileManager);
 
 FileManager skipData(FileManager fileManager);
+
+#endif
