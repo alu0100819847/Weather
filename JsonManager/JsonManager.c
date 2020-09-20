@@ -1,5 +1,5 @@
 #include"JsonManager.h"
-#include"FileManager.h"
+#include"../FileManager/FileManager.h"
 
 JsonManager addWeather(Weather weather, JsonManager jsonManager){
 	jsonManager.weatherList[jsonManager.size] = weather;
@@ -32,7 +32,6 @@ int manageData(char *argv[]){
 	printJson(jsonManager);
 	return 0;
 }
-
 
 
 void printJson(JsonManager jsonManager){

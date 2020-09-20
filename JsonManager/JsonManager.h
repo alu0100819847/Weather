@@ -4,7 +4,7 @@
 #include<stdio.h>
 #include <locale.h>
 
-#include"Weather.h"
+#include"../Weather/Weather.h"
 
 #define MAX_JSON_SIZE 7
 

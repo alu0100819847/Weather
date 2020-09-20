@@ -8,11 +8,11 @@
 
 bool checkParameters(int argc, char* argv[]) {
 	if(argc != 4){
-		fprintf(stderr, "Wrong Parameters\n Usage: weather[.exe] <City> <yyyy/mm/dd> <Celcius/Farenheit>\n");
+		fprintf(stderr, "Wrong Parameters\n Usage: ./weather <City> <yyyy/mm/dd> <Celcius/Farenheit>\n");
 		return false;
 	}
 	if(strcmp(argv[3], "Celcius") != 0 && strcmp(argv[3], "Farenheit") != 0){
-		fprintf(stderr, "Wrong Temperature Scale\n Usage: weather[.exe] <City> <yyyy/mm/dd> <Celcius/Farenheit>\n");
+		fprintf(stderr, "Wrong Temperature Scale\n Usage: ./weather <City> <yyyy/mm/dd> <Celcius/Farenheit>\n");
 		return false;	
 	}
 	return true;
