@@ -13,7 +13,7 @@ int manageData(char *argv[]){
 	JsonManager jsonManager;
 	if(fileManager.file == NULL){
 		fprintf(stderr, "File Not Found\n");
-		return 1;
+		return 404;
 	}
 	jsonManager.size = 0;
 	int search = parseDate(argv[2]);
@@ -24,7 +24,7 @@ int manageData(char *argv[]){
 	while(fileManager.state != End){
 		fileManager = manageFile(fileManager);
 		Weather weather = createWeather(fileManager.newLine);
-		if(filterCity(weather.ciudad, argv[1]) && filterDate(search, weather.fecha) && jsonManager.size < MAX_JSON_SIZE){
+		if(filterCity(weather.city, argv[1]) && filterDate(search, weather.date) && jsonManager.size < MAX_JSON_SIZE){
 			weather = temperatureScale(weather, argv[3]);
 			jsonManager = addWeather(weather, jsonManager);
 		}

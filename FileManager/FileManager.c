@@ -22,38 +22,40 @@ FileManager manageFile(FileManager fileManager){
 }
 
 FileManager getData(FileManager fileManager){
-	int c;
+	int fileChar;
 	int counter = 0;
 	char checkBlank;
-	c=fgetc(fileManager.file);
-	fileManager.newLine[counter] = c;
-	while(c != EOF && c!= '\n'){
+	fileChar=fgetc(fileManager.file);
+	fileManager.newLine[counter] = fileChar;
+	while(fileChar != EOF && fileChar!= '\n'){
 		counter += 1;
-		c=fgetc(fileManager.file);
-		if(c == checkBlank && checkBlank == ';'){
+		fileChar=fgetc(fileManager.file);
+		if(fileChar == checkBlank && checkBlank == ';'){
 			fileManager.newLine[counter] = '0';
 			counter += 1;
 		}
-		fileManager.newLine[counter] = c;
+		if(fileChar == '.') {
+			fileChar = ',';
+		}
+		fileManager.newLine[counter] = fileChar;
 
-		checkBlank= c;
+		checkBlank= fileChar;
 		
 	}
-	if(c == EOF){
+	if(fileChar == EOF){
 		fileManager.state = End;
 	}
 	return fileManager;
 }
 
 FileManager skipData(FileManager fileManager){
-	int c;
-	c=fgetc(fileManager.file);
-	while(c != EOF && c!= '\n'){
-		c=fgetc(fileManager.file);
+	int fileChar;
+	fileChar=fgetc(fileManager.file);
+	while(fileChar != EOF && fileChar!= '\n'){
+		fileChar=fgetc(fileManager.file);
 	}
-	if(c == EOF){
+	if(fileChar == EOF){
 		fileManager.state = End;
 	}
 	return fileManager;
 }
-

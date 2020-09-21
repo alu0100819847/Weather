@@ -11,39 +11,39 @@ Weather createWeather(char inputData[]) {
 			strcpy(tempDate, ptr);
 		}
 		if(counter == 1) {
-			strcpy(weather.ciudad, ptr);
-			strcpy(weather.ciudad, checkWhitespace(weather.ciudad));
+			strcpy(weather.city, ptr);
+			strcpy(weather.city, checkWhitespace(weather.city));
 		}
 		if(counter == 2) {
-			weather.temperaturaMaxima = atof(ptr);
+			weather.maxTemperature = atof(ptr);
 		}
 		if(counter == 3) {
-			weather.temperaturaMinima = atof(ptr);
+			weather.minTemperature = atof(ptr);
 		}
 		if(counter == 4) {
-			weather.precipitacion = atof(ptr);
+			weather.precipitation = atof(ptr);
 		}
 		if(counter == 5) {
-			weather.nubosidad = atof(ptr);
+			weather.cloudiness = atof(ptr);
 		}
 		ptr = strtok(NULL, delim);
 		counter += 1;
 	}
-	weather.fecha = parseDate(tempDate);
+	weather.date = parseDate(tempDate);
 	return weather;	
 }
 
 void printWeather(Weather weather){
 	struct tm* t;
-	time_t time = weather.fecha;
+	time_t time = weather.date;
 	t = gmtime(&time);
-	printf("{'fecha': '%.4d/%.2d/%.2d', 'temperaturaMinima': %.3f, 'temperaturaMaxima': %.3f, 'precipitacion': %.2f},\n" ,t->tm_year+1900,t->tm_mon+1, t->tm_mday, weather.temperaturaMinima, weather.temperaturaMaxima, weather.precipitacion);
+	printf("{'fecha': '%.4d/%.2d/%.2d', 'temperaturaMinima': %.3f, 'temperaturaMaxima': %.3f, 'precipitacion': %.2f},\n" ,t->tm_year+1900,t->tm_mon+1, t->tm_mday, weather.minTemperature, weather.maxTemperature, weather.precipitation);
 }
 
 Weather temperatureScale(Weather weather, char* scale){
 	if(strcmp("Farenheit", scale) == 0){
-		weather.temperaturaMaxima = celciusToFarenheit(weather.temperaturaMaxima);
-		weather.temperaturaMinima = celciusToFarenheit(weather.temperaturaMinima);
+		weather.maxTemperature = celciusToFarenheit(weather.maxTemperature);
+		weather.minTemperature = celciusToFarenheit(weather.minTemperature);
 	}
 	return weather;
 }
